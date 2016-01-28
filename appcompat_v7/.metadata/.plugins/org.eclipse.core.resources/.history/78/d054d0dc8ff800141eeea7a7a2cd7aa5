@@ -1,0 +1,64 @@
+package com.tariqsapps.comiccraze;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+
+
+public class StoreLocator extends FragmentActivity {
+	
+    GoogleMap mGoogleMap;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		if(googleServicesAvailable()) {
+			setContentView(R.layout.activity_store_locator);
+			/*if(initMap()) {
+				Toast.makeText(this, "Perfect - Maps Working", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(this, "Map not available", Toast.LENGTH_LONG).show();
+			}
+		} else {
+			setContentView(R.layout.maps_not_available);*/
+		}
+
+		
+
+
+	}
+	
+	public boolean googleServicesAvailable() {
+		int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+		if(isAvailable == ConnectionResult.SUCCESS) {
+			return true;
+		} else if (GooglePlayServicesUtil.isUserRecoverableError(isAvailable)) {
+			Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable, this, 0);
+			dialog.show();
+		} else {
+			Toast.makeText(this, "Cant connect to play services", Toast.LENGTH_LONG).show();
+		}
+		return false;
+	}
+	private boolean initMap(){
+		if (mGoogleMap == null) {
+			SupportMapFragment mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+			mGoogleMap = mapFrag.getMap();
+		}
+		return (mGoogleMap != null);	
+	}
+
+
+	
+}

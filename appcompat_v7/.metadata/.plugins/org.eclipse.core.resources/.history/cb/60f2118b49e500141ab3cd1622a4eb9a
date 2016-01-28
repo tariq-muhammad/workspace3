@@ -1,0 +1,53 @@
+package com.example.classtest;
+
+import android.support.v7.app.ActionBarActivity;
+import android.media.MediaPlayer;
+import android.widget.MediaController;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.VideoView;
+
+public class MediaActivity extends ActionBarActivity {
+	
+	VideoView v;
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_media);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.media, menu);
+		v = (VideoView) findViewById(R.id.videoView1);
+		 MediaPlayer mp = MediaPlayer.create(MediaActivity.this, R.raw.spooky);
+		return true;
+		
+		
+	}
+	public void playVideo(View view){
+	       
+		            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.test;
+		            Uri uri = Uri.parse(uriPath);
+		            v.setVideoURI(uri);
+		            v.setMediaController(new MediaController(this));
+		            v.start();
+		            v.requestFocus();
+
+    }
+	
+	public void playMusic(View view){
+		
+	     
+		  mp.start();
+		      
+	}	           
+	
+	
+}

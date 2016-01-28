@@ -1,0 +1,72 @@
+package com.example.classtest;
+
+
+
+import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+public class ImplicitActivity extends ActionBarActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_implicit);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.implicit, menu);
+		return true;
+	}
+
+	 public void launchMap(View view) {
+		    
+		   /* My Genymotion emulator did not have maps installed nor did it have
+		    * google play. I know this is the right code, but to check it I chose to 
+		    * start the chooser Intent instead of the intent Intent. Once again the code
+		    * should work on a different emulator. I would just need to replace 'chooser' with 
+		    * 'intent.'
+		    * ---Tariq----
+		    */
+	        Intent intent = new Intent(Intent.ACTION_VIEW);
+	        intent.setData(Uri.parse("geo:39.0090114, -76.900919,15"));
+            Intent chooser = Intent.createChooser(intent, "Launch Maps");
+	        startActivity(chooser);
+	 
+	    }
+	 
+	 public void sendEmail(View v) {
+		 
+		 	EditText et = (EditText) findViewById(R.id.emailText1);
+		 			
+	        Intent intent = new Intent(Intent.ACTION_SEND);
+	        intent.setData(Uri.parse("mailto:"));
+	        String[] to = {et.getText().toString(), ""};
+	        intent.putExtra(Intent.EXTRA_EMAIL, to);
+	        intent.putExtra(Intent.EXTRA_SUBJECT, "This is my Test");
+	        intent.putExtra(Intent.EXTRA_TEXT, "This goes in Test Body");
+	        intent.setType("message/rfc822");
+	        startActivity(intent);
+	        Intent chooser = Intent.createChooser(intent, "Select Your Email Client");
+	        startActivity(chooser);
+    }
+	 
+	 public void shareText(View v) {
+		 
+	        EditText et = (EditText) findViewById(R.id.nameText2);
+	 
+	        Intent intent = new Intent(Intent.ACTION_SEND);
+	        intent.setType("text/plain");
+	        intent.putExtra(Intent.EXTRA_TEXT, et.getText().toString());
+	        Intent chooser = Intent.createChooser(intent, "Share Name Using");
+	        startActivity(chooser);
+	    }
+	 
+}

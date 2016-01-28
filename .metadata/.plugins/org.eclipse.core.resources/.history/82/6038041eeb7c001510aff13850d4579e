@@ -1,0 +1,62 @@
+package com.example.microsofttest;
+
+import java.util.Hashtable;
+
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class MainActivity extends ActionBarActivity {
+	
+	
+	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		
+	}
+	public static Character findFirstNonRepeated( String input) {
+		// create a new hashtable:
+		Hashtable hashChar = new Hashtable( );
+
+		int j, strLength;
+		Character chr;
+		Integer intgr;
+
+		strLength = input.length( );
+
+		for (j =0; j < strLength; j++)
+		{
+		  chr = new Character(input.charAt( j ) );
+		  intgr = (Integer) hashChar.get(chr);
+		  if (intgr == null) {
+		     hashChar.put(chr, new Integer(1));
+		  }
+		  else
+		  {
+		    hashChar.put(chr, new Integer(intgr.intValue( ) + 1) );
+		  }
+		}
+
+		/* go through hashtable and search for the first 
+		    nonrepeated char:
+		*/
+		  
+		for(j = 0; j < .length; j++)
+		{
+		  chr = new Character(input.charAt(j));
+		  if (((Integer) hashChar.get(chr)).intValue( ) == 1)
+		    return chr;
+		}
+		/* this only returns if the loop above doesn't find
+		   a nonrepeated character.
+		*/
+		return null;
+	}
+
+	
+}

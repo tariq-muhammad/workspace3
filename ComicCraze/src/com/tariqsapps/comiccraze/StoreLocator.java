@@ -1,0 +1,126 @@
+package com.tariqsapps.comiccraze;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
+
+
+
+public class StoreLocator extends Activity {
+	
+    GoogleMap mGoogleMap;
+    TextView tv;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		if(googleServicesAvailable()) {
+			setContentView(R.layout.activity_store_locator);
+			tv = (TextView) findViewById(R.id.header);
+			Typeface komikax = Typeface.createFromAsset(getAssets(), getString(R.string.typeface_komikax));
+			tv.setTypeface(komikax);
+		
+	
+		if(initMap()) {
+				Toast.makeText(this, "Perfect - Maps Working", Toast.LENGTH_LONG).show();
+				//goToLocation(38.883308, -77.015949,18);
+				try {
+					geoLocate();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				mGoogleMap.setMyLocationEnabled(true);
+
+			} else {
+				Toast.makeText(this, "Map not available", Toast.LENGTH_LONG).show();
+			}
+		} else {
+			setContentView(R.layout.maps_not_available);
+		}
+
+		
+
+
+	}
+	
+	public boolean googleServicesAvailable() {
+		int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+		if(isAvailable == ConnectionResult.SUCCESS) {
+			return true;
+		} else if (GooglePlayServicesUtil.isUserRecoverableError(isAvailable)) {
+			Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable, this, 0);
+			dialog.show();
+		} else {
+			Toast.makeText(this, "Cant connect to play services", Toast.LENGTH_LONG).show();
+		}
+		return false;
+	}
+	private boolean initMap(){
+		if (mGoogleMap == null) {
+			
+			MapFragment mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+            mGoogleMap = mapFrag.getMap();
+		}
+		return (mGoogleMap != null);	
+	}
+
+	    private void goToLocation(double lat, double lng, int zoom) {
+		LatLng ll = new LatLng(lat, lng);
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
+		mGoogleMap.moveCamera(update);
+
+	}
+public void geoLocate() throws IOException {
+		
+	//	EditText et = (EditText) findViewById(R.id.editText1);
+	//	String location = et.getText().toString();
+		
+		Geocoder gc = new Geocoder(this);
+		List<Address> list = gc.getFromLocationName("third eye comics", 1);
+		Address add = list.get(0);
+		String locality = add.getLocality();
+		
+		Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
+		
+		double lat = add.getLatitude();
+		double lng = add.getLongitude();
+		goToLocation(lat, lng, 15);
+		
+		MarkerOptions options = new MarkerOptions()
+		.title(locality)
+		.position(new LatLng(lat, lng));
+		options.icon(BitmapDescriptorFactory.defaultMarker(
+				BitmapDescriptorFactory.HUE_BLUE));
+	
+	mGoogleMap.addMarker(options);
+
+
+		//mGoogleMap
+
+	}
+
+
+
+
+	
+}

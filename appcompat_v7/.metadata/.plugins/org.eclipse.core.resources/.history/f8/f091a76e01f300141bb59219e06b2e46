@@ -1,0 +1,19 @@
+package com.tariqsapps.comiccraze;
+
+import android.app.Activity;
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class ComicResources extends ListActivity implements OnItemClickListener {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_comic_resources);
+	}
+
+	
+}

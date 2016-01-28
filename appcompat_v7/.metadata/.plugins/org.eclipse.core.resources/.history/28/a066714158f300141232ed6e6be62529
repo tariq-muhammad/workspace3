@@ -1,0 +1,167 @@
+package com.example.xmljson;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+ 
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+ 
+
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+
+
+public class MainActivity extends ListActivity {
+	 
+    public static final String SERVER_URL = "http://vivianaranha.com/Users.xml";
+     
+    public static final String SERVER_JSON_URL = "http://api.groupon.com/v2/deals?client_id=8d1f63c7a85319c3d7671b108964fbfc0ea72d86";
+     
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+         
+//        DownloadXMLData downloadData = new DownloadXMLData();
+//        downloadData.execute();
+         
+        DownloadJSONData downloadData = new DownloadJSONData();
+        downloadData.execute();
+         
+    }
+    public class DownloadJSONData extends AsyncTask<Void, Void, Void> {
+ 
+        @Override
+        protected Void doInBackground(Void... params) {
+           
+             
+            try {
+                 
+                  DefaultHttpClient defaultClient = new DefaultHttpClient();
+                  HttpGet httpGetRequest = new HttpGet(SERVER_JSON_URL);
+     
+                  HttpResponse httpResponse = defaultClient.execute(httpGetRequest);
+                  BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));
+                  String json = reader.readLine();
+     
+                  JSONObject jsonObject = new JSONObject(json);
+     
+                  JSONArray jArray = jsonObject.getJSONArray("deals");
+     
+                  for (int i = 0; i < jArray.length(); i++) {
+     
+                      JSONObject oneObject = jArray.getJSONObject(i);
+                      Log.d("Title", oneObject.getString("shortAnnouncementTitle"));
+                     
+               
+                  }
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+ 
+             
+            return null;
+        }
+        
+    }
+    
+    
+    public class DownloadXMLData extends AsyncTask<Void, Void, Void> {
+         
+            @Override
+            protected void onPreExecute() {
+               
+                super.onPreExecute();
+            }
+         
+            @Override
+        protected Void doInBackground(Void... params) {
+         
+                 
+                try {
+                    URL theUrl = new URL(SERVER_URL);
+         
+                    XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                    factory.setNamespaceAware(true);
+                    XmlPullParser xpp = factory.newPullParser();
+                    xpp.setInput(theUrl.openConnection().getInputStream(), "UTF_8");
+         
+                    int eventType = xpp.getEventType();
+         
+                    while(eventType != XmlPullParser.END_DOCUMENT){
+                      if(eventType == XmlPullParser.START_TAG){
+                        if(xpp.getName().equalsIgnoreCase("name")){
+                            System.out.println("Fruit name : "+xpp.nextText());
+         
+                        }
+                      }
+         
+                      eventType=xpp.next();
+                    }
+         
+                } catch (MalformedURLException e) {
+                    
+                    e.printStackTrace();
+                } catch (XmlPullParserException e) {
+                
+                    e.printStackTrace();
+                } catch (IOException e) {
+                   
+                    e.printStackTrace();
+                }
+ 
+                
+                
+//             URL theUrl;
+//             try {
+//                 theUrl = new URL(SERVER_URL);
+//                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//                 DocumentBuilder db = dbf.newDocumentBuilder();
+//                 Document doc = db.parse(new InputSource(theUrl.openStream()));
+//                 doc.getDocumentElement().normalize();
+//
+//                 NodeList nl = doc.getElementsByTagName("Fruit");
+//                 
+//                 for(int i = 0; i < nl.getLength(); i++) {
+//                     Node node = nl.item(i);
+//                     Element fstElmnt = (Element) node;
+//                     NodeList nameList = fstElmnt.getElementsByTagName("name");
+//                     Element nameElement = (Element) nameList.item(0);
+//                     nameList = nameElement.getChildNodes();
+//                     System.out.println("Fruit name : "+((Node) nameList.item(0)).getNodeValue());
+//                     Log.d("FRUITS", "Fruit name : "+((Node) nameList.item(0)).getNodeValue());
+//                 }
+//                 
+//                 
+//             } catch (MalformedURLException e) {
+//                
+//                 e.printStackTrace();
+//             } catch (ParserConfigurationException e) {
+//              
+//                 e.printStackTrace();
+//             } catch (SAXException e) {
+//               
+//                 e.printStackTrace();
+//             } catch (IOException e) {
+//                 
+//                 e.printStackTrace();
+//             }
+                
+           return null;
+       }
+        
+   }
+
+}

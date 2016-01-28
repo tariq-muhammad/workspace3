@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ButtonTest/ButtonTest.iml" filepath="$PROJECT_DIR$/ButtonTest/ButtonTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ComicCraze/ComicCraze.iml" filepath="$PROJECT_DIR$/ComicCraze/ComicCraze.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JsonParsing/JsonParsing.iml" filepath="$PROJECT_DIR$/JsonParsing/JsonParsing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MicrosoftTest/MicrosoftTest.iml" filepath="$PROJECT_DIR$/MicrosoftTest/MicrosoftTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TwitterFeedReader/TwitterFeedReader.iml" filepath="$PROJECT_DIR$/TwitterFeedReader/TwitterFeedReader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" filepath="$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" />
+      <module fileurl="file://$USER_HOME$/android-sdks/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" filepath="$USER_HOME$/android-sdks/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" />
+    </modules>
+  </component>
+</project>

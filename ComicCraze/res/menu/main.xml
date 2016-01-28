@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tariqsapps.comiccraze.MainActivity" >
+
+    <item
+        android:id="@+id/comic_apps"
+        android:orderInCategory="1"
+        android:showAsAction="never"
+        android:title="@string/comic_apps"/>
+    <item
+        android:id="@+id/movie_trailers"
+        android:orderInCategory="2"
+        android:showAsAction="never"
+        android:title="@string/movie_trailers"/>
+    <item
+        android:id="@+id/comic_resources"
+        android:orderInCategory="3"
+        android:showAsAction="never"
+        android:title="@string/comic_resources"/>
+    <item
+        android:id="@+id/store_locator"
+        android:orderInCategory="4"
+        android:showAsAction="never"
+        android:title="@string/store_locator"/>
+
+</menu>

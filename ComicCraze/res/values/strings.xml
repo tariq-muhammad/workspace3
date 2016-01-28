@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ComicCraze</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="comic_apps">Comic Apps</string>
+    <string name="title_activity_new_apps">NewAppsActivity</string>
+    <string name="title_activity_comic_apps">Comic Apps!</string>
+    <string name="get_new_apps">   Download Apps Here!</string>
+    <string name="typeface_komikax">fonts/KOMIKAX_.ttf</string>
+    <string name="title_activity_movie_trailers">New Movie Trailers!</string>
+    <string name="movie_trailers"> Movie Trailers</string>
+    <string name="title_activity_avengers">Avengers: Age Of Ultron</string>
+    <string name="title_activity_ant_man">AntMan</string>
+    <string name="title_activity_fantastic_four">Fantastic Four</string>
+    <string name="title_activity_star_wars">Star Wars: The Force Awakens</string>
+    <string name="title_activity_batmanv_superman">Batman v Superman: Dawn Of Justice</string>
+    <string name="comic_resources">Resources</string>
+    <string name="title_activity_comic_resources">Get Your Resources!</string>
+    <string name="title_activity_view_resources">View Your Favorite Blog!</string>
+    <string name="store_locator">Comic Stores</string>
+    <string name="title_activity_store_locator">Locate Comic Stores!</string>
+    <string name="locate_stores_near_user">Locate Stores Near User</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+
+</resources>

@@ -1,0 +1,5 @@
+1425172110974	Rename field 'answerLabel'
+1425172663647	Rename field 'getAnswerButton'
+1425172687223	Rename field 'crystalBallImage'
+1425195747419	Extract method 'handleNewAnswer'
+1425196524177	Delete element

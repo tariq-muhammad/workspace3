@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="dexedLibs3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ButtonTest/bin/dexedLibs/android-support-v4-ec1784bdeb99d764d83fa0be11c3743a.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ButtonTest/bin/dexedLibs/android-support-v7-appcompat-0ab80baa99cae58c78aa938e681e7039.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ButtonTest/bin/dexedLibs/appcompat_v7-b4b9ba0b22b6ab2c67e0633e4729c2a4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

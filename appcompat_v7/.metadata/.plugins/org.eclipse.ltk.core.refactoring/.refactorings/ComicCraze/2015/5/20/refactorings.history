@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extracts string &apos;Locate Stores Near User&apos; into R.string.locate_stores_near_user" description="Extracts string &apos;Locate Stores Near User&apos; into R.string.locate_stores_near_user" file="/ComicCraze/res/layout/activity_store_locator.xml" flags="6" id="com.android.ide.eclipse.adt.refactoring.extract.string" mode="EDIT_SOURCE" proj="/ComicCraze" rplc-all-java="false" rplc-all-xml="false" sel-end="708" sel-start="671" stamp="1431403636439" tok-esc="Locate Stores Near User" xml-attr-name="android:text"/>
+</session>

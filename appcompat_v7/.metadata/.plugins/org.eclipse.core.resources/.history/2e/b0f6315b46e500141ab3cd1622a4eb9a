@@ -1,0 +1,35 @@
+package com.example.classtest;
+
+
+
+
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.SeekBar;
+
+public class FragmentA extends Fragment implements View.OnClickListener  {
+	
+	
+	SeekBar button;
+	int counter=0;
+	Communicator comm;
+	
+	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.fragment_a, container, false);
+		button = (SeekBar) getActivity().findViewById(R.id.seekBar1);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}
